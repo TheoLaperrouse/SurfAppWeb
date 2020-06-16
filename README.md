@@ -1,6 +1,14 @@
-# Surfapifront
+# Application Web
+
+## Technologie et Principe
+
+Utilisation de Python, Flask et Angular pour créer une application permettant de récupérer les bon moments pour aller surfer dans la semaine
+
+## Installation :
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+
+`pip3 install flask flask_cors flask_restful flask_jsonpify`
 
 ## Development server
 

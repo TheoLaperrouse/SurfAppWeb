@@ -149,6 +149,12 @@ La houle des vagues est de {weatherHours.houle}m et leur période est de {weathe
     return res
 
 
+def loc():
+    fichierSpots = open('spots.json', 'r')
+    data = json.load(fichierSpots)
+    return data
+
+
 def initSpots():
     global locations
     locations = {}
@@ -266,19 +272,6 @@ def clientChoice():
     else:
         print('Le choix renseigné n\'est pas valable !')
         clientChoice()
-
-
-def allSpots():
-    res = []
-    for indexSpot in range(0, len(locations)):
-        infos = serverResponse(locations[indexSpot][1])
-        parseResponse(infos, locations[indexSpot])
-        previsionSurf = writeBestSpot()
-        res.append(previsionSurf)
-    previsionSurf = '\n'.join(res)
-    sendMail(previsionSurf)
-    time.sleep(60*60*24)
-    allSpots()
 
 
 def main():
