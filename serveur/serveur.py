@@ -18,5 +18,13 @@ def spots():
     return data
 
 
+@app.route("/bestsRide")
+def bestsRide():
+    pointGeo = request.args.get('pointGeo', None)
+    nomSpot = request.args.get('spotName', None)
+    directionVent = request.args.get('directionVent', None)
+    return surfAPI.serverResponse(pointGeo, nomSpot, directionVent)
+
+
 if __name__ == '__main__':
     app.run(port=5002)
