@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListSpotsComponent } from './list-spots/list-spots.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ResultatComponent } from './resultat/resultat.component';
+import { AddSpotComponent } from './add-spot/add-spot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListSpotsComponent,
-    ResultatComponent
+    AddSpotComponent
   ],
   imports: [
     BrowserModule,

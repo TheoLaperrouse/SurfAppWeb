@@ -2,19 +2,20 @@
     <div class="row">
         <div class="col-xs-12">
             <h3>Mes spots favoris </h3>
-            <ul>
-                <li *ngFor="let spot of spots">
-                    <div class="card" style="width: 50rem;align-content:left;">
-                        <div class="card-body">
-                            <h4 class="card-title">{{spot.name}}</h4>
-                            <button (click)="goTo(spot.pointsGeo,spot.name,spot.directionVent)">Voir les bon crénaux de
-                                la semaine</button>
-                        </div>
-                    </div>
-                    <br>
-                </li>
-                <h4 class='pull-right'>{{res}}</h4>
-            </ul>
+            <div class="card border-info mb-3 text-center" style="max-width: 35rem;" *ngFor="let spot of spots">
+                <div class="card-body">
+                    <h5 class="card-title">{{spot.name}}
+                    </h5>
+                    <p class="card-text">Point Géolocalisation : {{spot.pointsGeo}}
+                    </p>
+                    <p class="card-text">Orientation de la plage : {{spot.directionVent}}
+                    </p>
+                    <button (click)="goTo(spot.pointsGeo,spot.name,spot.directionVent)">Voir les bons crénaux de
+                        la semaine</button>
+                </div>
+            </div>
+            <br>
+            <h4>{{res}}</h4>
         </div>
     </div>
 </div>

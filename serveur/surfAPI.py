@@ -9,17 +9,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-
-URL = 'api.worldweatheronline.com'
-api_key = '5b4541479ee849d29a8152452202505'
-locations = {}
 jsonToSend = {}
 jsonToSend['spots'] = []
-
-DayWeek = ['Lundi', 'Mardi', 'Mercredi',
-           'Jeudi', 'Vendedi', 'Samedi', 'Dimanche']
-Month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-         'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
 
 
 def getScore(json, directionVent):
@@ -112,15 +103,16 @@ def sendMail(previsionSurf):
     server.close()
 
 
-def addSpot(nom_spot, location, orientVent):
-    fichierSpots = open(f'./serveur/spots.json', 'a+', newline='')
-    writer = csv.writer(fichierSpots, delimiter=';', dialect='excel')
-    writer.writerow([nom_spot, location, orientVent])
-    fichierSpots.close()
+def addSpot(spotToAdd):
+    with open('./serveur/spots.json', "r") as file:
+        data = json.load(file)
+        data['spots'].append(spotToAdd)
+    with open('./serveur/spots.json', 'w') as file:
+        json.dump(data, file, indent=4)
 
 
 def serverResponse(posLocation, nom_spot, directionVent):
-    conn = http.client.HTTPSConnection(URL)
+    conn = http.client.HTTPSConnection('api.worldweatheronline.com')
     payload = ""
     parameters = f"/premium/v1/marine.ashx?q={posLocation}&key=5b4541479ee849d29a8152452202505&lang=fr&format=json&tide=yes&tp=3&num_of_days=7"
     conn.request("GET", parameters, payload)
@@ -151,7 +143,6 @@ def parseResponse(infos, spot, directionVent):
             score = getScore(jsonWeatherInfo, directionVent)
             if score > 11:
                 jsonWeatherInfo['score'] = score
-                print(jsonWeatherInfo)
                 jsonToSend['spots'].append(jsonWeatherInfo)
 
 
@@ -176,6 +167,10 @@ def getHour(hour):
 
 
 def getJour(date):
+    DayWeek = ['Lundi', 'Mardi', 'Mercredi',
+               'Jeudi', 'Vendedi', 'Samedi', 'Dimanche']
+    Month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+             'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
     dateTime = datetime.datetime.strptime(date, ('%Y-%m-%d'))
     nomJour = DayWeek[dateTime.weekday()]
     nomMois = Month[dateTime.month-1]

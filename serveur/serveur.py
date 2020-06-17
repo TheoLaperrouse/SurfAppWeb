@@ -26,5 +26,12 @@ def bestsRide():
     return surfAPI.serverResponse(pointGeo, nomSpot, directionVent)
 
 
+@app.route("/addSpot", methods=['POST'])
+def addSpot():
+    spotToAdd = request.json
+    surfAPI.addSpot(spotToAdd)
+    return requ
+
+
 if __name__ == '__main__':
     app.run(port=5002)
