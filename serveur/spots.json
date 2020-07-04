@@ -2,17 +2,17 @@
     "spots": [
         {
             "nomSpot": "Plage de LongChamps, St Lunaire",
-            "pointsGeo": "48.620019,-2.1355192",
+            "pointGeo": "48.620019,-2.1355192",
             "orientationPlage": "Sud"
         },
         {
-            "nomSpot": "Plage de Primel,Plougasnou",
-            "pointsGeo": "48.7116581,-3.8171246",
+            "nomSpot": "Plage de Primel, Plougasnou",
+            "pointGeo": "48.7116581,-3.8171246",
             "orientationPlage": "Sud"
         },
         {
             "nomSpot": "Plage de La Baule, La Baule-Escoublac",
-            "pointsGeo": "47.27921,-2.37939",
+            "pointGeo": "47.27921,-2.37939",
             "orientationPlage": "Nord-Ouest"
         }
     ]

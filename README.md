@@ -4,7 +4,7 @@
 
 Utilisation de Python, Flask et Angular pour créer une application permettant de récupérer les bon moments pour aller surfer dans la semaine
 
-## Installation :
+## Installation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
 

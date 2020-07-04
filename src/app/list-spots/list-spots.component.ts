@@ -21,12 +21,12 @@ export class ListSpotsComponent implements OnInit {
       console.log(this.spots);
     })
   }
-  goTo(pointsGeo, spotName, directionVent): void {
+  goTo(pointsGeo, spotName, orientationPlage): void {
     var URL = 'http://127.0.0.1:5002/bestsRide'
     let parametres = new HttpParams();
     parametres = parametres.append('pointGeo', pointsGeo);
-    parametres = parametres.append('spotName', spotName);
-    parametres = parametres.append('directionVent', directionVent)
+    parametres = parametres.append('nomSpot', spotName);
+    parametres = parametres.append('orientationPlage', orientationPlage)
     console.log(parametres)
     this.httpClient.get(URL, { params: parametres }).subscribe(data => {
       this.bestSpots = data as JSON;

@@ -141,7 +141,7 @@ def parseResponse(infos, spot, directionVent):
             jsonWeatherInfo['houle'] = float(hours['swellHeight_m'])
             jsonWeatherInfo['periode'] = float(hours['swellPeriod_secs'])
             score = getScore(jsonWeatherInfo, directionVent)
-            if score > 11:
+            if score > 7:
                 jsonWeatherInfo['score'] = score
                 jsonToSend['spots'].append(jsonWeatherInfo)
 

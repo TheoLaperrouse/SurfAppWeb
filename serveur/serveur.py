@@ -21,16 +21,18 @@ def spots():
 @app.route("/bestsRide")
 def bestsRide():
     pointGeo = request.args.get('pointGeo', None)
-    nomSpot = request.args.get('spotName', None)
-    directionVent = request.args.get('directionVent', None)
-    return surfAPI.serverResponse(pointGeo, nomSpot, directionVent)
+    nomSpot = request.args.get('nomSpot', None)
+    orientationPlage = request.args.get('orientationPlage', None)
+    return surfAPI.serverResponse(pointGeo, nomSpot, orientationPlage)
 
 
 @app.route("/addSpot", methods=['POST'])
 def addSpot():
-    spotToAdd = request.json
-    surfAPI.addSpot(spotToAdd)
-    return requ
+    if request.method == "POST":
+        spotToAdd = request.json
+        surfAPI.addSpot(spotToAdd)
+        return '200'
+    return '404'
 
 
 if __name__ == '__main__':

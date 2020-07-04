@@ -1,5 +1,13 @@
-<h3>Ajout d'un spot : </h3>
-<input type="text" id="nomSpot" name="name" value=''>
-<input type="text" id="pointsGeo" name="name" value=''>
-<input type="text" id="orientationPlage" value=''>
-<button (click)="addSpot()">Ajouter le spoit</button>
+<div class='container'>
+    <div class='row'>
+        <h3>Nom du spot à ajouter:</h3>
+        <input type="text" id="nomSpot" name="name" value=''>
+        <h3>Points de Géolocalisation :</h3>
+        <input type="text" id="pointsGeo" name="name" value=''>
+        <h3>Orientation Plage :</h3>
+        <input type="text" id="orientationPlage" value=''>
+    </div>
+    <div class='row align-items-center'>
+        <button (click)="addSpot()">Ajouter le spot</button>
+    </div>
+</div>

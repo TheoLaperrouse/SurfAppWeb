@@ -18,7 +18,7 @@ export class AddSpotComponent implements OnInit {
     var orientationPlage = (<HTMLInputElement>document.getElementById('orientationPlage')).value
     var spotToSend = {}
     spotToSend['nomSpot'] = nomSpot
-    spotToSend['pointGeo'] = pointsGeo
+    spotToSend['pointsGeo'] = pointsGeo
     spotToSend['orientationPlage'] = orientationPlage
     this.httpClient.post('http://127.0.0.1:5002/addSpot', spotToSend).subscribe(data => {
       console.log(spotToSend)
