@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ListSpotsComponent } from './list-spots/list-spots.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddSpotComponent } from './add-spot/add-spot.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListSpotsComponent,
-    AddSpotComponent
+    AddSpotComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

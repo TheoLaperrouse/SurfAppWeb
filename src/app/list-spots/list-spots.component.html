@@ -1,21 +1,14 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h3>Mes spots favoris </h3>
-            <div class="card border-info mb-3 text-center" style="max-width: 35rem;" *ngFor="let spot of spots">
-                <div class="card-body">
-                    <h5 class="card-title">{{spot.nomSpot}}
-                    </h5>
-                    <p class="card-text">Point Géolocalisation : {{spot.pointGeo}}
-                    </p>
-                    <p class="card-text">Orientation de la plage : {{spot.orientationPlage}}
-                    </p>
-                    <button (click)="goTo(spot.pointGeo,spot.nomSpot,spot.orientationPlage)">Voir les bons crénaux de
-                        la semaine</button>
-                </div>
-            </div>
-            <br>
-            <h4>{{res}}</h4>
-        </div>
+<h3>Mes spots favoris </h3>
+<div class="card border-info mb-3 text-center" style="max-width: 35rem;" *ngFor="let spot of spots">
+    <div class="card-body">
+        <h5 class="card-title">{{spot.nomSpot}}
+        </h5>
+        <p class="card-text">Point Géolocalisation : {{spot.pointGeo}}
+        </p>
+        <p class="card-text">Orientation de la plage : {{spot.orientationPlage}}
+        </p>
+        <button (click)="goTo(spot.pointGeo,spot.nomSpot,spot.orientationPlage)">Voir les bons crénaux de
+            la semaine</button>
     </div>
 </div>
+<h4>{{res}}</h4>
