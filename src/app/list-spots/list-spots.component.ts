@@ -18,10 +18,10 @@ export class ListSpotsComponent implements OnInit {
   ngOnInit(): void {
     this.httpClient.get('http://127.0.0.1:5002/').subscribe(data => {
       this.spots = data['spots'] as JSON;
-      console.log(this.spots);
     })
   }
   goTo(pointsGeo, spotName, orientationPlage): void {
+    this.arrayRes = [];
     var URL = 'http://127.0.0.1:5002/bestsRide'
     let parametres = new HttpParams();
     parametres = parametres.append('pointGeo', pointsGeo);
@@ -31,14 +31,15 @@ export class ListSpotsComponent implements OnInit {
     this.httpClient.get(URL, { params: parametres }).subscribe(data => {
       this.bestSpots = data as JSON;
       console.log(data['spots'])
-      this.arrayRes = []
+
+      var toAdd = data['spot'][0] + '\n'
+      console.log(toAdd)
       for (let spot of data['spots']) {
         console.log(spot)
-        var toAdd = spot.location + ': Score ' + spot.score + '\n' + spot.date + ' à ' + spot.hours + '\nLe vent soufflera vers ' + spot.directionVent + ' à ' + spot.vitesseVent + ' km / s\n'
+        toAdd = spot.location + ': Score ' + spot.score + '\n' + spot.date + ' à ' + spot.hours + '\nLe vent soufflera vers ' + spot.directionVent + ' à ' + spot.vitesseVent + ' km / s\n'
         console.log(toAdd)
         this.arrayRes.push(toAdd)
       }
-      this.res = ''
       this.res = this.arrayRes.join('\n')
     })
   }

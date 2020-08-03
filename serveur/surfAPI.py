@@ -9,9 +9,6 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-jsonToSend = {}
-jsonToSend['spots'] = []
-
 
 def getScore(json, directionVent):
     score = 0
@@ -114,15 +111,16 @@ def addSpot(spotToAdd):
 def serverResponse(posLocation, nom_spot, directionVent):
     conn = http.client.HTTPSConnection('api.worldweatheronline.com')
     payload = ""
-    parameters = f"/premium/v1/marine.ashx?q={posLocation}&key=5b4541479ee849d29a8152452202505&lang=fr&format=json&tide=yes&tp=3&num_of_days=7"
+    parameters = f"/premium/v1/marine.ashx?q={posLocation}&key=70e629a997b144328dc151643202507&lang=fr&format=json&tide=yes&tp=3&num_of_days=7"
     conn.request("GET", parameters, payload)
     res = conn.getresponse().read()
     infosMeteo = json.loads(res)
-    parseResponse(infosMeteo, nom_spot, directionVent)
-    return jsonToSend
+    return parseResponse(infosMeteo, nom_spot, directionVent)
 
 
 def parseResponse(infos, spot, directionVent):
+    jsonToSend = {}
+    jsonToSend['spots'] = []
     spot.replace('%20', ' ')
     semaineMeteo = infos['data']['weather']
     for jour in semaineMeteo:
@@ -141,9 +139,10 @@ def parseResponse(infos, spot, directionVent):
             jsonWeatherInfo['houle'] = float(hours['swellHeight_m'])
             jsonWeatherInfo['periode'] = float(hours['swellPeriod_secs'])
             score = getScore(jsonWeatherInfo, directionVent)
-            if score > 7:
+            if score > 10:
                 jsonWeatherInfo['score'] = score
                 jsonToSend['spots'].append(jsonWeatherInfo)
+    return jsonToSend
 
 
 # Ajouter taille des marées : Grand Coeff = Bien --> tide['tideHeight_mt']
